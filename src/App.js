@@ -1,11 +1,11 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Spinner } from 'reactstrap';
+import { Spinner, Alert } from 'reactstrap';
 import { useState, useEffect } from 'react';
 import DataDisplay from './components/DataDisplay';
 
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({ count: 0, entries: [] });
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = '';
 
@@ -29,14 +29,12 @@ function App() {
     fetchData();
   }, []);
 
+  if (errorMessage) {
+    return <Alert>{errorMessage}</Alert>;
+  }
   return (
     <div className='App'>
-      {loading ? (
-        <Spinner color='success' />
-      ) : (
-        <DataDisplay count={data.count} entries={data.entries} />
-      )}
-      {errorMessage && 'something went wrong'}
+      {loading ? <Spinner color='success' /> : <DataDisplay data={data} />}
     </div>
   );
 }

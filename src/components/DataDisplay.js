@@ -1,14 +1,26 @@
-const DataDisplay = ({ count, entries }) => {
-  console.log(entries[0]);
+import { Table } from 'reactstrap';
+import DataItem from './DataItem';
+
+const DataDisplay = (props) => {
+  const { count, entries } = props.data;
   return (
-    <div>
+    <div className='container'>
       <h2>{count}</h2>
-      {entries.map((entry) => (
-        <p>
-          api: {entry.API} Description: {entry.Description} Auth: {entry.Auth}{' '}
-          HTTPS: {entry.HTTPS} Cors: {entry.Cors}
-        </p>
-      ))}
+      <Table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>api</th>
+            <th>Description</th>
+            <th>Info</th>
+          </tr>
+        </thead>
+        <tbody>
+          {entries.map((entry, i) => (
+            <DataItem key={i} entry={entry} index={i} />
+          ))}
+        </tbody>
+      </Table>
     </div>
   );
 };
