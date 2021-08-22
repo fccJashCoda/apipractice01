@@ -1,6 +1,4 @@
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Spinner, Alert } from 'reactstrap';
 import { useState, useEffect } from 'react';
 import DataDisplay from './components/DataDisplay';
 
@@ -17,7 +15,6 @@ function App() {
         const payload = await response.json();
 
         setData(payload);
-        console.log(payload);
       } catch (err) {
         const error = new Error('Api call failed.');
         setErrorMessage(error.message);
@@ -30,11 +27,13 @@ function App() {
   }, []);
 
   if (errorMessage) {
-    return <Alert>{errorMessage}</Alert>;
+    return <p>{errorMessage}</p>;
   }
   return (
-    <div className='App'>
-      {loading ? <Spinner color='success' /> : <DataDisplay data={data} />}
+    <div className='App bg-gray-800'>
+      <div class='container mx-auto p-4 '>
+        {loading ? <div color='success' /> : <DataDisplay data={data} />}
+      </div>
     </div>
   );
 }

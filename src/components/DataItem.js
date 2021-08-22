@@ -1,39 +1,44 @@
-import { Badge } from 'reactstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 const DataItem = ({ entry, index }) => {
+  const current = `${index + 1}`.padStart(3, '0');
+
   return (
-    <tr>
-      <th scope='row'>{index + 1}</th>
-      <td>{entry.API}</td>
-      <td>{entry.Description}</td>
-      <td>
+    <div class='w-auto bg-gray-900  p-4 rounded-xl h-52 relative'>
+      <div>
+        <a href={entry.Link}>
+          <span class='text-3xl text-yellow-500 font-bold'>#{current}:</span>{' '}
+          <span class='font-bold text-white text-5xl'>{entry.API}</span>
+        </a>
+      </div>
+      <p class='pb-5 mb-auto text-white'>{entry.Description}</p>
+      <div class='flex mt-auto absolute bottom-4'>
         {entry.Auth ? (
-          <Badge color='danger' pill>
+          <div class='bg-red-700 rounded-2xl  py-1 px-2 mr-1 text-xs text-white'>
             {entry.Auth}
-          </Badge>
+          </div>
         ) : null}
         {entry.HTTPS ? (
-          <Badge color='info' pill>
+          <div class='bg-blue-700 rounded-2xl py-1 px-2 mr-1 text-xs text-white'>
             HTTPS
-          </Badge>
+          </div>
         ) : null}
         {entry.Cors !== 'no' ? (
-          <Badge color='warning' pill>
-            {entry.Cors}
-          </Badge>
+          entry.Cors === 'unknown' ? (
+            <div class='bg-yellow-600 rounded-2xl py-1 px-2 mr-1 text-xs text-white'>
+              Cors Unknown
+            </div>
+          ) : (
+            <div class='bg-green-700 rounded-2xl py-1 px-2 mr-1 text-xs text-white'>
+              Cors
+            </div>
+          )
         ) : null}
-      </td>
-    </tr>
+      </div>
+    </div>
   );
 };
 
 export default DataItem;
 
 {
-  /* <td>
-  {entry.Auth && <Badge color='danger'>auth</Badge>}{' '}
-  {entry.HTTPS && <Badge color='info'>true</Badge>}
-  {entry.Cors && <Badge color='success'>cors</Badge>}
-</td>; */
+  /* <div color='warning'>{entry.Cors}</div> */
 }
