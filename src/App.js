@@ -31,7 +31,7 @@ function App() {
   }
   return (
     <div className='App bg-gray-800'>
-      <div class='container mx-auto p-4 '>
+      <div className='container mx-auto p-4 '>
         {loading ? <div color='success' /> : <DataDisplay data={data} />}
       </div>
     </div>
