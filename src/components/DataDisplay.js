@@ -32,7 +32,7 @@ const DataDisplay = (props) => {
       >
         {toggle ? 'Pick another API' : 'Pick an API'}
       </button>
-      <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
+      <div className='grid gap-4 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3'>
         {entries.map((entry, i) => (
           <DataItem key={i} entry={entry} index={i} />
         ))}
